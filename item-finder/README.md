@@ -73,7 +73,12 @@
 | 부품 | 역할 |
 |---|---|
 | NFC 스티커 태그 (NTAG213/215) | 등록 시 물건 식별 |
-| BLE 비콘 (ESP32-C3 / 상용 비콘) | 실시간 위치 신호 송출 |
+| BLE 비콘 — 3가지 옵션 중 택1 | 실시간 위치 신호 송출 |
+
+**BLE 비콘 옵션:**
+1. **안드로이드 공기계 + [`android_beacon`](./android_beacon/) 앱** (추천 — 무료 재활용)
+2. ESP32-C3 미니 + iBeacon 펌웨어 (저렴, DIY)
+3. 상용 BLE 비콘 (버튼 전지형, 즉시 사용)
 
 ---
 
@@ -171,13 +176,21 @@ item-finder/
 ├── arduino/item_finder/
 │   └── item_finder.ino             ← Arduino Mega 메인 스케치
 │
-└── flipper/
-    ├── application.fam             ← ufbt 빌드 매니페스트
-    ├── item_finder.h               ← 공용 타입·상수 정의
-    ├── item_finder.c               ← 앱 진입점·이벤트 루프·GUI
-    ├── uart_comm.h / uart_comm.c   ← UART 통신 레이어
-    ├── nfc_worker.h / nfc_worker.c ← NFC 폴링 워커 스레드
-    └── ble_worker.h / ble_worker.c ← BLE GAP 스캔 워커 스레드
+├── flipper/                        ← Flipper Zero 메인 앱
+│   ├── application.fam
+│   ├── item_finder.{c,h}           ← 앱 진입점·이벤트 루프
+│   ├── uart_comm.{c,h}             ← UART 통신
+│   ├── nfc_worker.{c,h}            ← NFC 폴링
+│   └── ble_worker.{c,h}            ← BLE 스캔 (이름·MAC 하이브리드)
+│
+├── android_beacon/                 ← 공기계용 안드로이드 비콘 앱
+│   ├── app/...
+│   ├── build.gradle.kts
+│   └── README.md
+│
+└── test_serial_monitor/            ← UART 테스트용 보조 프로젝트
+    ├── arduino/serial_bridge/
+    └── flipper/
 ```
 
 ### 모듈별 역할

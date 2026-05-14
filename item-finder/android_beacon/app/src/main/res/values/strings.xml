@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Item Finder 비콘</string>
+
+    <string name="intro">이 앱을 실행한 안드로이드 기기를 물건에 부착하면, 본체(Flipper Zero)가 이 기기의 BLE 신호로 위치를 추적할 수 있습니다.</string>
+
+    <string name="label_name">물건 이름</string>
+    <string name="hint_name">예: 리모컨</string>
+    <string name="hint_name_help">광고 이름은 \"IF-&lt;물건이름&gt;\" 형태로 송신됩니다. (예: IF-리모컨)</string>
+    <string name="label_status">상태</string>
+
+    <string name="btn_start">광고 시작</string>
+    <string name="btn_stop">광고 중지</string>
+
+    <string name="status_idle">대기 중 — 광고 시작 버튼을 누르세요</string>
+    <string name="status_running">광고 중: %1$s\n(Flipper Zero가 이 신호를 검색합니다)</string>
+    <string name="status_error">오류: %1$s</string>
+
+    <string name="error_no_bluetooth">이 기기는 블루투스를 지원하지 않습니다</string>
+    <string name="error_bluetooth_off">블루투스를 켜주세요</string>
+    <string name="error_no_advertise_support">이 기기는 BLE 광고를 지원하지 않습니다.\n다른 안드로이드 기기를 사용해 주세요.</string>
+    <string name="error_empty_name">물건 이름을 입력하세요</string>
+    <string name="error_permission_denied">권한이 거부됨: %1$s</string>
+
+    <string name="note_keep_app">※ 화면을 꺼도 광고는 계속됩니다.\n※ 배터리 최적화를 해제하면 더 안정적으로 동작합니다.</string>
+</resources>

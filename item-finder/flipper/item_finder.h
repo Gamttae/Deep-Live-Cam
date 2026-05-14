@@ -52,12 +52,17 @@ typedef enum {
 } AppState;
 
 // ── 앱 컨텍스트 ──────────────────────────────────────────────────
+//
+// target_id: 추적 중인 BLE 식별자
+//   · MAC 형식 ("AA:BB:CC:DD:EE:FF") → MAC 매칭 (고정 MAC BLE 비콘용)
+//   · "IF-..." 로 시작하면 → 광고 디바이스 이름 매칭 (안드로이드 비콘용)
+//
 typedef struct {
     FuriMessageQueue* event_queue;
     FuriStreamBuffer* uart_rx_buf;
 
     AppState state;
-    char     target_mac[18]; // 추적 중인 BLE MAC
+    char     target_id[32]; // 32자: MAC 또는 IF-<한글이름> (UTF-8)
 
     FuriThread* nfc_thread;
     FuriThread* ble_thread;

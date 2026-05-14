@@ -65,7 +65,7 @@ Servo scanServo;
 struct TrackedObject {
     char name[16];
     char nfcUID[32];   // NFC UID hex 문자열
-    char bleMAC[18];   // BLE MAC "AA:BB:CC:DD:EE:FF"
+    char bleMAC[32];   // BLE 식별자: "AA:BB:CC:DD:EE:FF" 또는 "IF-<이름>" (안드로이드 비콘)
 };
 TrackedObject objects[MAX_OBJECTS];
 int objectCount = 0;
@@ -211,7 +211,8 @@ void startRegBLE() {
 }
 
 void onBLEMACReceived(const char* mac) {
-    strncpy(objects[objectCount].bleMAC, mac, 17);
+    strncpy(objects[objectCount].bleMAC, mac, 31);
+    objects[objectCount].bleMAC[31] = '\0';
     objectCount++;
 
     char buf[21];

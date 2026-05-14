@@ -71,14 +71,14 @@ void uart_comm_process_rx(ItemFinderApp* app) {
 
             } else if (strcmp(line_buf, "BLE_SCAN") == 0) {
                 app->state = AppStateBLERegistering;
-                memset(app->target_mac, 0, sizeof(app->target_mac));
+                memset(app->target_id, 0, sizeof(app->target_id));
                 ItemFinderEvent evt = {.type = EventTypeUartRx};
                 furi_message_queue_put(app->event_queue, &evt, 0);
 
             } else if (strncmp(line_buf, "BLE_RSSI:", 9) == 0) {
                 app->state = AppStateBLETracking;
-                strncpy(app->target_mac, line_buf + 9, 17);
-                app->target_mac[17] = '\0';
+                strncpy(app->target_id, line_buf + 9, 31);
+                app->target_id[31] = '\0';
                 ItemFinderEvent evt = {.type = EventTypeUartRx};
                 furi_message_queue_put(app->event_queue, &evt, 0);
 
