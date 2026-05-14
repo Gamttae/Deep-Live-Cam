@@ -1,0 +1,21 @@
+App(
+    appid="item_finder",
+    name="Item Finder",
+    apptype=FlipperAppType.EXTERNAL,
+    entry_point="item_finder_app",
+    stack_size=4096,
+    fap_category="Tools",
+    # 10x10 흑백 아이콘 PNG 파일 (생략 가능)
+    # fap_icon="icon.png",
+    requires=[
+        "bt",
+        "gui",
+        "notification",
+    ],
+    sources=[
+        "item_finder.c",
+        "uart_comm.c",
+        "nfc_worker.c",
+        "ble_worker.c",
+    ],
+)
